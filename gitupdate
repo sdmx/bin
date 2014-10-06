@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for i in `ls ~/Documents/PIXgit`
+	do cd ~/Documents/PIXgit/$i
+	echo "Updating $i"
+	pullstatus=$(git pull)
+	if [ "$pullstatus" != "Already up-to-date." ]
+	 then echo $pullstatus
+	fi
+done
+
+for i in `ls ~/Documents/PIXgit`
+	do cd ~/Documents/PIXgit/$i
+	echo -n "Getting status of $i: "
+	gitstatus=$(git status)
+	if [ "$gitstatus" != "On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working directory clean" ]
+	then echo "$gitstatus"
+	else echo "CLEAN"
+	fi
+done
